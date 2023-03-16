@@ -33,7 +33,13 @@ fun SignupScreen(navController: NavController) {
     var pwd by remember {
         mutableStateOf("")
     }
+    var cpwd by remember {
+        mutableStateOf("")
+    }
     var isVisible by remember {
+        mutableStateOf(false)
+    }
+    var isVisibleConfirm by remember {
         mutableStateOf(false)
     }
 
@@ -102,6 +108,25 @@ fun SignupScreen(navController: NavController) {
                         }
                     },
                     onValueChange = { value -> pwd = value })
+                Spacer(modifier = Modifier.size(height = 12.dp, width = 0.dp))
+                TextField(modifier = Modifier.fillMaxWidth(),
+                    value = cpwd,
+                    colors = TextFieldDefaults.textFieldColors(
+                        backgroundColor = Color.White,
+                    ),
+                    label = {
+                        Text(text = "Confirm Password", fontSize = 12.sp)
+                    },
+                    visualTransformation = if (isVisibleConfirm) VisualTransformation.None else PasswordVisualTransformation(),
+                    trailingIcon = {
+                        IconButton(onClick = { isVisibleConfirm = !isVisibleConfirm }) {
+                            Icon(
+                                imageVector = if (isVisibleConfirm) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,
+                                contentDescription = ""
+                            )
+                        }
+                    },
+                    onValueChange = { value -> cpwd = value })
                 Spacer(modifier = Modifier.size(height = 24.dp, width = 0.dp))
                 Button(modifier = Modifier
                     .height(50.dp)
