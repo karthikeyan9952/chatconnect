@@ -24,6 +24,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.udc.chatconnect.navigation.Screens
 import com.udc.chatconnect.ui.theme.Primary
+import com.udc.chatconnect.ui.theme.manrope
+import com.udc.chatconnect.ui.theme.pacifico
+import com.udc.chatconnect.widgets.TextH1
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -65,12 +68,7 @@ fun LoginScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(12.dp)
             ) {
-                Text(
-                    text = "Login",
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Primary
-                )
+                TextH1(value = "Login")
                 Spacer(modifier = Modifier.size(height = 36.dp, width = 0.dp))
                 TextField(modifier = Modifier.fillMaxWidth(),
                     value = email,
@@ -105,7 +103,7 @@ fun LoginScreen(navController: NavController) {
                     .height(50.dp)
                     .fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
-                    onClick = { /*TODO*/ }) {
+                    onClick = { navController.navigate(Screens.Contacts.route) }) {
                     Text(text = "Login", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
                 }
                 Spacer(modifier = Modifier.size(height = 36.dp, width = 0.dp))

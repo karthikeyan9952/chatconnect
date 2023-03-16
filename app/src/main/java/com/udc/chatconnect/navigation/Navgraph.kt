@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.udc.chatconnect.LoginScreen
 import com.udc.chatconnect.SignupScreen
+import com.udc.chatconnect.screens.ContactsScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
@@ -15,6 +16,9 @@ fun SetupNavGraph(navController: NavHostController) {
         }
         composable(route = Screens.Signup.route) {
             SignupScreen(navController = navController)
+        }
+        composable(route = Screens.Contacts.route) {
+            ContactsScreen(navController = navController)
         }
     }
 }

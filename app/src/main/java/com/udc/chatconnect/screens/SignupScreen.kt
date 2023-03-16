@@ -132,7 +132,7 @@ fun SignupScreen(navController: NavController) {
                     .height(50.dp)
                     .fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
-                    onClick = { /*TODO*/ }) {
+                    onClick = { navController.navigate(Screens.Contacts.route) }) {
                     Text(text = "Signup", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
                 }
                 Spacer(modifier = Modifier.size(height = 36.dp, width = 0.dp))
