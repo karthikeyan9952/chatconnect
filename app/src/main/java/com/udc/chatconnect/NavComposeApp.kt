@@ -1,5 +1,11 @@
 package com.udc.chatconnect
 
+import Action
+import AuthenticationView
+import Destination.AuthenticationOption
+import Destination.Home
+import Destination.Login
+import Destination.Register
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
@@ -7,6 +13,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.udc.chatconnect.ui.theme.ChatconnectTheme
+import com.udc.chatconnect.view.home.HomeView
+import com.udc.chatconnect.view.login.LoginView
+import com.udc.chatconnect.view.register.RegisterView
 
 @Composable
 fun NavComposeApp() {

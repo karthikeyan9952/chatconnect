@@ -21,10 +21,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ChatconnectTheme {
-                navController = rememberNavController()
-                SetupNavGraph(navController = navController)
-            }
+//            ChatconnectTheme {
+//                navController = rememberNavController()
+//                SetupNavGraph(navController = navController)
+//            }
+            NavComposeApp()
         }
     }
 }

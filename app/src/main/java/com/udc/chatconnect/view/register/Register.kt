@@ -1,8 +1,10 @@
-package com.udc.chatconnect.view.login
+package com.udc.chatconnect.view.register
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -14,19 +16,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.udc.chatconnect.view.Appbar
 import com.udc.chatconnect.view.Buttons
 import com.udc.chatconnect.view.TextFormField
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.getValue
-
 
 @Composable
-fun LoginView(
+fun RegisterView(
     home: () -> Unit,
     back: () -> Unit,
-    loginViewModel: LoginViewModel = viewModel()
+    registerViewModel: RegisterViewModel = viewModel()
 ) {
-    val email: String by loginViewModel.email.observeAsState("")
-    val password: String by loginViewModel.password.observeAsState("")
-    val loading: Boolean by loginViewModel.loading.observeAsState(initial = false)
+    val email: String by registerViewModel.email.observeAsState("")
+    val password: String by registerViewModel.password.observeAsState("")
+    val loading: Boolean by registerViewModel.loading.observeAsState(initial = false)
 
     Box(
         contentAlignment = Alignment.Center,
@@ -41,28 +40,28 @@ fun LoginView(
             verticalArrangement = Arrangement.Top
         ) {
             Appbar(
-                title = "Login",
+                title = "Register",
                 action = back
             )
             TextFormField(
                 value = email,
-                onValueChange = { loginViewModel.updateEmail(it) },
+                onValueChange = { registerViewModel.updateEmail(it) },
                 label = "Email",
                 keyboardType = KeyboardType.Email,
                 visualTransformation = VisualTransformation.None
             )
             TextFormField(
                 value = password,
-                onValueChange = { loginViewModel.updatePassword(it) },
+                onValueChange = { registerViewModel.updatePassword(it) },
                 label = "Password",
                 keyboardType = KeyboardType.Password,
                 visualTransformation = PasswordVisualTransformation()
             )
             Spacer(modifier = Modifier.height(20.dp))
             Buttons(
-                title = "Login",
-                onClick = { loginViewModel.loginUser(home = home) },
-                backgroundColor = Color.Magenta
+                title = "Register",
+                onClick = { registerViewModel.registerUser(home = home) },
+                backgroundColor = Color.Blue
             )
         }
     }

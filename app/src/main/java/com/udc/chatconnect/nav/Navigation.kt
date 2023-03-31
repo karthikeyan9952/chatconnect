@@ -1,4 +1,7 @@
 
+import Destination.Home
+import Destination.Login
+import Destination.Register
 import androidx.navigation.NavHostController
 
 
