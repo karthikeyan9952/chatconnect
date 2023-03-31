@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -100,8 +101,48 @@ fun SingleMessage(message: String, isCurrentUser: Boolean) {
                 TextAlign.End
             else
                 TextAlign.Start,
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             color = if (!isCurrentUser) MaterialTheme.colors.primary else Color.White
         )
     }
+}
+
+@Preview
+@Composable
+fun SingleMsgPrev() {
+    SingleMessage(message = "Hello", isCurrentUser = true)
+}
+
+@Preview
+@Composable
+fun TxtFieldPrev() {
+    TextFormField(
+        value = "sdfdsf",
+        onValueChange = {},
+        label = "dsfdsf",
+        keyboardType = KeyboardType.Ascii,
+        visualTransformation = VisualTransformation.None
+    )
+}
+
+@Preview
+@Composable
+fun AppbarPrev() {
+    Appbar(title = "Home") {
+        
+    }
+}
+
+@Preview
+@Composable
+fun TitlePrev() {
+    Title(title = "Sample")
+}
+
+@Preview
+@Composable
+fun ButtonsPrev() {
+    Buttons(title = "Button", onClick = { /*TODO*/ }, backgroundColor = Color.Red)
 }

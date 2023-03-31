@@ -19,6 +19,9 @@ class LoginViewModel : ViewModel() {
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
 
+    private val _isVisible = MutableLiveData(false)
+    val isVisible: LiveData<Boolean> = _isVisible
+
     // Update email
     fun updateEmail(newEmail: String) {
         _email.value = newEmail
@@ -27,6 +30,10 @@ class LoginViewModel : ViewModel() {
     // Update password
     fun updatePassword(newPassword: String) {
         _password.value = newPassword
+    }
+
+    fun toggleIsVisible() {
+        _isVisible.value = !_isVisible.value!!
     }
 
     // Register user

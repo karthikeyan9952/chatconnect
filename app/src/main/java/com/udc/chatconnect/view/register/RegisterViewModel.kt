@@ -16,8 +16,17 @@ class RegisterViewModel : ViewModel() {
     private val _password = MutableLiveData("")
     val password: LiveData<String> = _password
 
+    private val _confirmpassword = MutableLiveData("")
+    val confirmpassword: LiveData<String> = _confirmpassword
+
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
+
+    private val _isVisible = MutableLiveData(false)
+    val isVisible: LiveData<Boolean> = _isVisible
+
+    private val _isVisibleConfirm = MutableLiveData(false)
+    val isVisibleConfrim: LiveData<Boolean> = _isVisibleConfirm
 
     // Update email
     fun updateEmail(newEmail: String) {
@@ -27,6 +36,18 @@ class RegisterViewModel : ViewModel() {
     // Update password
     fun updatePassword(newPassword: String) {
         _password.value = newPassword
+    }
+
+    fun updateConfirmPassword(newPassword: String) {
+        _confirmpassword.value = newPassword
+    }
+
+    fun toggleIsVisible() {
+        _isVisible.value = !_isVisible.value!!
+    }
+
+    fun toggleIsVisibleConfirmation() {
+        _isVisibleConfirm.value = !_isVisibleConfirm.value!!
     }
 
     // Register user
