@@ -1,14 +1,17 @@
 package com.udc.chatconnect.view.home
 
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.udc.chatconnect.Constants
+import com.udc.chatconnect.view.toastMessage
 import java.lang.IllegalArgumentException
 
 class HomeViewModel : ViewModel() {
@@ -21,6 +24,11 @@ class HomeViewModel : ViewModel() {
 
     private var _messages = MutableLiveData(emptyList<Map<String, Any>>().toMutableList())
     val messages: LiveData<MutableList<Map<String, Any>>> = _messages
+
+    private val _loading = MutableLiveData(false)
+    val loading: LiveData<Boolean> = _loading
+
+    private val auth: FirebaseAuth = Firebase.auth
 
     /**
      * Update the message value as user types
@@ -80,5 +88,13 @@ class HomeViewModel : ViewModel() {
      */
     private fun updateMessages(list: MutableList<Map<String, Any>>) {
         _messages.value = list.asReversed()
+    }
+
+    fun logoutUser(landing: () -> Unit, context: Context) {
+        println("**********************")
+        auth.signOut()
+        println("**********************")
+        landing()
+        toastMessage("Logout Successful", context)
     }
 }

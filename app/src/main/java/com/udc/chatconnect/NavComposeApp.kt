@@ -39,19 +39,18 @@ fun NavComposeApp() {
             composable(Register) {
                 RegisterView(
                     home = actions.home,
-                    back = actions.navigateBack,
-                    login = actions.login
+                    login = actions.replaceLoginWithRegister
                 )
             }
             composable(Login) {
                 LoginView(
                     home = actions.home,
-                    back = actions.navigateBack,
-                    register = actions.register
+                    register = actions.replaceRegisterWithLogin,
+                    pop = actions.navigateBack
                 )
             }
             composable(Home) {
-                HomeView()
+                HomeView(landing = actions.gotoLanding)
             }
         }
     }

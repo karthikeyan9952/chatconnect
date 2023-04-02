@@ -5,17 +5,21 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
     primary = Primary,
     primaryVariant = Purple700,
-    secondary = Teal200
+    secondary = Teal200,
+    background = Dark
 )
 
 private val LightColorPalette = lightColors(
     primary = Primary,
     primaryVariant = Purple700,
-    secondary = Teal200
+    secondary = Teal200,
+    background = Color.White
 
     /* Other default colors to override
     background = Color.White,
@@ -33,6 +37,17 @@ fun ChatconnectTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compo
         DarkColorPalette
     } else {
         LightColorPalette
+    }
+
+    val systemUiController = rememberSystemUiController()
+    if(darkTheme){
+        systemUiController.setSystemBarsColor(
+            color = Primary
+        )
+    }else{
+        systemUiController.setSystemBarsColor(
+            color = Primary
+        )
     }
 
     MaterialTheme(

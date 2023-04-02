@@ -1,9 +1,9 @@
-
+import Destination.AuthenticationOption
 import Destination.Home
 import Destination.Login
 import Destination.Register
 import androidx.navigation.NavHostController
-
+import androidx.navigation.NavOptions
 
 
 /**
@@ -34,4 +34,28 @@ class Action(navController: NavHostController) {
     val login: () -> Unit = { navController.navigate(Login) }
     val register: () -> Unit = { navController.navigate(Register) }
     val navigateBack: () -> Unit = { navController.popBackStack() }
+
+    val replaceLoginWithRegister: () -> Unit = {  navController.navigate(
+        Login,
+        NavOptions.Builder()
+            .setPopUpTo(Register, inclusive = true)
+            .setLaunchSingleTop(true)
+            .build()
+    ) }
+
+    val replaceRegisterWithLogin: () -> Unit = {  navController.navigate(
+        Register,
+        NavOptions.Builder()
+            .setPopUpTo(Login, inclusive = true)
+            .setLaunchSingleTop(true)
+            .build()
+    ) }
+
+    val gotoLanding: () -> Unit = {  navController.navigate(
+        AuthenticationOption,
+        NavOptions.Builder()
+            .setPopUpTo(Home, inclusive = true)
+            .setLaunchSingleTop(true)
+            .build()
+    ) }
 }
