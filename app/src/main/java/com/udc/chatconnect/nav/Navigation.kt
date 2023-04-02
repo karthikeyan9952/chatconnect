@@ -58,4 +58,20 @@ class Action(navController: NavHostController) {
             .setLaunchSingleTop(true)
             .build()
     ) }
+
+    val forwardHomeInLogin: () -> Unit = {  navController.navigate(
+        Home,
+        NavOptions.Builder()
+            .setPopUpTo(Login, inclusive = true)
+            .setLaunchSingleTop(true)
+            .build()
+    ) }
+
+    val forwardHomeInRegister: () -> Unit = {  navController.navigate(
+        Home,
+        NavOptions.Builder()
+            .setPopUpTo(Register, inclusive = true)
+            .setLaunchSingleTop(true)
+            .build()
+    ) }
 }

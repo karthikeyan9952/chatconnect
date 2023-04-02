@@ -38,13 +38,13 @@ fun NavComposeApp() {
             }
             composable(Register) {
                 RegisterView(
-                    home = actions.home,
+                    home = actions.forwardHomeInRegister,
                     login = actions.replaceLoginWithRegister
                 )
             }
             composable(Login) {
                 LoginView(
-                    home = actions.home,
+                    home = actions.forwardHomeInLogin,
                     register = actions.replaceRegisterWithLogin,
                     pop = actions.navigateBack
                 )
@@ -55,3 +55,4 @@ fun NavComposeApp() {
         }
     }
 }
+
