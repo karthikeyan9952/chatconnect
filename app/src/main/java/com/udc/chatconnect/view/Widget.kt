@@ -237,20 +237,22 @@ fun SingleMessageWithDate(
     timestamp: String,
     isCurrentUser: Boolean,
     isLast: Boolean,
-    date:String
+    date: String
 ) {
     val isSending: Boolean by homeViewModel.isSending.observeAsState(false)
 
     Column {
         Spacer(modifier = Modifier.height(8.dp))
-        Row(modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement =  Arrangement.Center) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
             Text(
                 text = date,
                 fontFamily = manrope,
-                textAlign =  TextAlign.Center,
+                textAlign = TextAlign.Center,
                 fontSize = 12.sp,
-                color=Color.Gray
+                color = Color.Gray
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -261,22 +263,22 @@ fun SingleMessageWithDate(
         ) {
             Card(
                 shape = if (isCurrentUser) RoundedCornerShape(
-                    topStart = 32.dp,
-                    topEnd = 0.dp,
-                    bottomStart = 32.dp,
-                    bottomEnd = 32.dp
+                    topStart = 24.dp,
+                    topEnd = 24.dp,
+                    bottomStart = 24.dp,
+                    bottomEnd = 24.dp
                 ) else RoundedCornerShape(
-                    topStart = 0.dp,
-                    topEnd = 32.dp,
-                    bottomStart = 32.dp,
-                    bottomEnd = 32.dp
+                    topStart = 24.dp,
+                    topEnd = 24.dp,
+                    bottomStart = 24.dp,
+                    bottomEnd = 24.dp
                 ),
                 backgroundColor = if (isCurrentUser) MaterialTheme.colors.primary else Color.White,
                 elevation = 2.dp
             ) {
                 Row(
                     modifier = Modifier
-                        .padding(vertical = 14.dp, horizontal = 18.dp),
+                        .padding(vertical = 10.dp, horizontal = 20.dp),
                     verticalAlignment = Alignment.Bottom
                 ) {
                     Text(

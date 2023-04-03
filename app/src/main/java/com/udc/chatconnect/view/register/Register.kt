@@ -90,11 +90,16 @@ fun RegisterView(
                 if (loading) Loader() else ButtonPrimary(
                     title = "Signup",
                     onClick = {
-                        if (password != confirmpassword) {
-                            toastMessage("Passwords not matching", context)
-                        } else {
-                            registerViewModel.registerUser(home = home)
-                        }
+                        if (email.isEmpty()) toastMessage(
+                            "Email is Empty",
+                            context
+                        ) else if (password.isEmpty()) toastMessage(
+                            "Password is empty",
+                            context
+                        ) else if (password != confirmpassword) toastMessage(
+                            "Passwords not matching",
+                            context
+                        ) else registerViewModel.registerUser(home = home)
                     })
                 Spacer(modifier = Modifier.size(height = 36.dp, width = 0.dp))
                 Row(

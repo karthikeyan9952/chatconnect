@@ -31,7 +31,7 @@ fun LoginView(
     val password: String by loginViewModel.password.observeAsState("")
     val loading: Boolean by loginViewModel.loading.observeAsState(initial = false)
     val isVisible: Boolean by loginViewModel.isVisible.observeAsState(false)
-
+    val context = LocalContext.current
 
 
     Column(
@@ -80,7 +80,15 @@ fun LoginView(
                 Spacer(modifier = Modifier.size(height = 24.dp, width = 0.dp))
                 if (loading) Loader() else ButtonPrimary(
                     title = "Login",
-                    onClick = { loginViewModel.loginUser(home = home) })
+                    onClick = {
+                        if (email.isEmpty()) toastMessage(
+                            "Email is empty",
+                            context
+                        ) else if (password.isEmpty()) toastMessage(
+                            "Password is empty",
+                            context
+                        ) else loginViewModel.loginUser(home = home)
+                    })
                 Spacer(modifier = Modifier.size(height = 36.dp, width = 0.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
@@ -95,10 +103,4 @@ fun LoginView(
 
     }
 
-}
-
-@Preview
-@Composable
-fun LoginPrev() {
-//    LoginView(home = { /*TODO*/ }, back = { /*TODO*/ })
 }

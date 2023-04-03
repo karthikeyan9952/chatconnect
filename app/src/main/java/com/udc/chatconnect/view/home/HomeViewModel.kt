@@ -128,10 +128,6 @@ class HomeViewModel : ViewModel() {
         val hours = minute / 60
         val days = hours / 24
 
-        println("*************")
-        println(days)
-        println("*************")
-
         return if (days == 0L) "Today  $t" else if (days == 1L) "Yesterday  $t" else "$formattedDate  $t"
 
     }
