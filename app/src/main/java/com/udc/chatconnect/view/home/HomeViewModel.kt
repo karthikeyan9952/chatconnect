@@ -2,6 +2,7 @@ package com.udc.chatconnect.view.home
 
 
 import android.content.Context
+import android.icu.text.SimpleDateFormat
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,6 +14,7 @@ import com.google.firebase.ktx.Firebase
 import com.udc.chatconnect.Constants
 import com.udc.chatconnect.view.toastMessage
 import java.lang.IllegalArgumentException
+import java.util.*
 
 class HomeViewModel : ViewModel() {
     init {
@@ -25,8 +27,8 @@ class HomeViewModel : ViewModel() {
     private var _messages = MutableLiveData(emptyList<Map<String, Any>>().toMutableList())
     val messages: LiveData<MutableList<Map<String, Any>>> = _messages
 
-    private val _loading = MutableLiveData(false)
-    val loading: LiveData<Boolean> = _loading
+    private val _isSending = MutableLiveData(false)
+    val isSending: LiveData<Boolean> = _isSending
 
     private val auth: FirebaseAuth = Firebase.auth
 
@@ -43,6 +45,8 @@ class HomeViewModel : ViewModel() {
     fun addMessage() {
         val message: String = _message.value ?: throw IllegalArgumentException("message empty")
         if (message.isNotEmpty()) {
+            _isSending.value = true
+            _message.value = ""
             Firebase.firestore.collection(Constants.MESSAGES).document().set(
                 hashMapOf(
                     Constants.MESSAGE to message,
@@ -50,7 +54,7 @@ class HomeViewModel : ViewModel() {
                     Constants.SENT_ON to System.currentTimeMillis()
                 )
             ).addOnSuccessListener {
-                _message.value = ""
+                _isSending.value = false
             }
         }
     }
@@ -91,10 +95,45 @@ class HomeViewModel : ViewModel() {
     }
 
     fun logoutUser(landing: () -> Unit, context: Context) {
-        println("**********************")
         auth.signOut()
-        println("**********************")
         landing()
         toastMessage("Logout Successful", context)
     }
+
+    fun convertLongToTime(time: Long): String {
+        val today = Date()
+        val date = Date(time)
+        var hour: Int = date.hours
+        var minutes: Int = date.minutes
+        var suffix: String = ""
+
+        if (hour > 11) {
+            suffix = "PM"
+            if (hour > 12)
+                hour -= 12
+        } else {
+            suffix = "AM"
+            if (hour == 0)
+                hour = 12
+        }
+
+        val t = if (minutes < 10) "$hour:0$minutes $suffix" else "$hour:$minutes $suffix"
+
+        val sdf = SimpleDateFormat("dd-MM-yyyy")
+        val formattedDate = sdf.format(date)
+
+        val diff: Long = today.time - date.time
+        val seconds = diff / 1000
+        val minute = seconds / 60
+        val hours = minute / 60
+        val days = hours / 24
+
+        println("*************")
+        println(days)
+        println("*************")
+
+        return if (days == 0L) "Today  $t" else if (days == 1L) "Yesterday  $t" else "$formattedDate  $t"
+
+    }
+
 }

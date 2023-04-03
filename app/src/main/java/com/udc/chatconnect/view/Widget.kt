@@ -2,6 +2,7 @@ package com.udc.chatconnect.view
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.icu.text.SimpleDateFormat
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -27,6 +28,7 @@ import com.udc.chatconnect.ui.theme.manrope
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Send
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -34,8 +36,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 import com.udc.chatconnect.view.*
+import com.udc.chatconnect.view.home.HomeViewModel
 import com.udc.chatconnect.view.login.LoginViewModel
 import kotlinx.coroutines.launch
+import java.sql.Timestamp
+import java.util.*
 
 
 @Composable
@@ -163,10 +168,19 @@ fun Appbar(title: String, action: () -> Unit) {
 
 
 @Composable
-fun SingleMessage(message: String, isCurrentUser: Boolean) {
+fun SingleMessage(
+    homeViewModel: HomeViewModel = viewModel(),
+    message: String,
+    timestamp: String,
+    isCurrentUser: Boolean,
+    isLast: Boolean
+) {
+    val isSending: Boolean by homeViewModel.isSending.observeAsState(false)
+
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = if (isCurrentUser) Arrangement.End else Arrangement.Start
+        horizontalArrangement = if (isCurrentUser) Arrangement.End else Arrangement.Start,
+        verticalAlignment = Alignment.Bottom
     ) {
         Card(
             shape = if (isCurrentUser) RoundedCornerShape(
@@ -183,14 +197,103 @@ fun SingleMessage(message: String, isCurrentUser: Boolean) {
             backgroundColor = if (isCurrentUser) MaterialTheme.colors.primary else Color.White,
             elevation = 2.dp
         ) {
-            Text(
-                text = message,
-                fontFamily = manrope,
-                textAlign = if (isCurrentUser) TextAlign.End
-                else TextAlign.Start,
+            Row(
                 modifier = Modifier
                     .padding(vertical = 14.dp, horizontal = 18.dp),
-                color = if (!isCurrentUser) MaterialTheme.colors.primary else Color.White
+                verticalAlignment = Alignment.Bottom
+            ) {
+                Text(
+                    text = message,
+                    fontFamily = manrope,
+                    textAlign = if (isCurrentUser) TextAlign.End
+                    else TextAlign.Start,
+                    color = if (!isCurrentUser) MaterialTheme.colors.primary else Color.White
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = timestamp,
+                    fontFamily = manrope,
+                    textAlign = if (isCurrentUser) TextAlign.End
+                    else TextAlign.Start,
+                    color = if (!isCurrentUser) MaterialTheme.colors.primary else Color.White,
+                    fontSize = 10.sp
+                )
+            }
+        }
+        if (isCurrentUser && isLast && isSending) Icon(
+            Icons.Outlined.Send,
+            contentDescription = "Sending",
+            tint = Primary
+        ) else Spacer(
+            modifier = Modifier.width(0.dp)
+        )
+    }
+}
+
+@Composable
+fun SingleMessageWithDate(
+    homeViewModel: HomeViewModel = viewModel(),
+    message: String,
+    timestamp: String,
+    isCurrentUser: Boolean,
+    isLast: Boolean,
+    date:String
+) {
+    val isSending: Boolean by homeViewModel.isSending.observeAsState(false)
+
+    Column {
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement =  Arrangement.Center) {
+            Text(
+                text = date,
+                fontFamily = manrope,
+                textAlign =  TextAlign.Center,
+                fontSize = 12.sp,
+                color=Color.Gray
+            )
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = if (isCurrentUser) Arrangement.End else Arrangement.Start,
+            verticalAlignment = Alignment.Bottom
+        ) {
+            Card(
+                shape = if (isCurrentUser) RoundedCornerShape(
+                    topStart = 32.dp,
+                    topEnd = 0.dp,
+                    bottomStart = 32.dp,
+                    bottomEnd = 32.dp
+                ) else RoundedCornerShape(
+                    topStart = 0.dp,
+                    topEnd = 32.dp,
+                    bottomStart = 32.dp,
+                    bottomEnd = 32.dp
+                ),
+                backgroundColor = if (isCurrentUser) MaterialTheme.colors.primary else Color.White,
+                elevation = 2.dp
+            ) {
+                Row(
+                    modifier = Modifier
+                        .padding(vertical = 14.dp, horizontal = 18.dp),
+                    verticalAlignment = Alignment.Bottom
+                ) {
+                    Text(
+                        text = message,
+                        fontFamily = manrope,
+                        textAlign = if (isCurrentUser) TextAlign.End
+                        else TextAlign.Start,
+                        color = if (!isCurrentUser) MaterialTheme.colors.primary else Color.White
+                    )
+                }
+            }
+            if (isCurrentUser && isLast && isSending) Icon(
+                Icons.Outlined.Send,
+                contentDescription = "Sending",
+                tint = Primary
+            ) else Spacer(
+                modifier = Modifier.width(0.dp)
             )
         }
     }

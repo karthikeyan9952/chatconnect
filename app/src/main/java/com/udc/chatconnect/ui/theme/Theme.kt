@@ -12,7 +12,7 @@ private val DarkColorPalette = darkColors(
     primary = Primary,
     primaryVariant = Purple700,
     secondary = Teal200,
-    background = Dark
+    background = Color.White
 )
 
 private val LightColorPalette = lightColors(
@@ -33,11 +33,12 @@ private val LightColorPalette = lightColors(
 
 @Composable
 fun ChatconnectTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
+//    val colors = if (darkTheme) {
+//        DarkColorPalette
+//    } else {
+//        LightColorPalette
+//    }
+    val colors = LightColorPalette
 
     val systemUiController = rememberSystemUiController()
     if(darkTheme){

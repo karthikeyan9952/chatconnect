@@ -4,10 +4,9 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -16,7 +15,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.udc.chatconnect.Constants
 import com.udc.chatconnect.view.Appbar
 import com.udc.chatconnect.view.SingleMessage
+import com.udc.chatconnect.view.SingleMessageWithDate
 import com.udc.chatconnect.view.TextFieldMessage
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -30,6 +32,7 @@ fun HomeView(
         initial = emptyList<Map<String, Any>>().toMutableList()
     )
     val context = LocalContext.current
+    var tmpDate =SimpleDateFormat("MM/dd/yyyy").parse("10/10/2023")
 
     Scaffold(
         topBar = {
@@ -52,12 +55,18 @@ fun HomeView(
             verticalArrangement = Arrangement.spacedBy(4.dp),
             reverseLayout = true
         ) {
-            items(messages) { message ->
+            itemsIndexed(messages) { index, message ->
                 val isCurrentUser = message[Constants.IS_CURRENT_USER] as Boolean
-                SingleMessage(
+                val timeStamp = message[Constants.SENT_ON].toString().toLong()
+
+                SingleMessageWithDate(
                     message = message[Constants.MESSAGE].toString(),
-                    isCurrentUser = isCurrentUser
+                    timestamp = homeViewModel.convertLongToTime(timeStamp),
+                    isCurrentUser = isCurrentUser,
+                    isLast = index == 0,
+                    date = homeViewModel.convertLongToTime(timeStamp)
                 )
+
             }
         }
     }
