@@ -12,10 +12,10 @@ import androidx.compose.ui.unit.dp
 import com.udc.chatconnect.R
 import com.udc.chatconnect.ui.theme.ChatconnectTheme
 import com.udc.chatconnect.ui.theme.Primary
-import com.udc.chatconnect.view.ButtonPrimary
-import com.udc.chatconnect.view.ButtonSecondary
-import com.udc.chatconnect.view.Description
-import com.udc.chatconnect.view.Title
+import com.udc.chatconnect.view.widget.ButtonPrimary
+import com.udc.chatconnect.view.widget.ButtonSecondary
+import com.udc.chatconnect.view.widget.Description
+import com.udc.chatconnect.view.widget.Title
 
 @Composable
 fun AuthenticationView(register: () -> Unit, login: () -> Unit) {

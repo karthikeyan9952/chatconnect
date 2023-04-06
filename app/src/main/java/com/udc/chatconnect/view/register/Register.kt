@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.udc.chatconnect.R
 import com.udc.chatconnect.ui.theme.Primary
-import com.udc.chatconnect.view.*
+import com.udc.chatconnect.view.widget.*
 
 
 @Composable

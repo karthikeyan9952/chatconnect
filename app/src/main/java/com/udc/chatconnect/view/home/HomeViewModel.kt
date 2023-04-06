@@ -11,8 +11,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.udc.chatconnect.Constants
-import com.udc.chatconnect.view.toastMessage
+import com.udc.chatconnect.model.Constants
+import com.udc.chatconnect.view.widget.toastMessage
 import java.lang.IllegalArgumentException
 import java.util.*
 

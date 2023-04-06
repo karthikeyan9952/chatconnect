@@ -3,7 +3,6 @@ package com.udc.chatconnect.view.home
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -12,11 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.udc.chatconnect.Constants
-import com.udc.chatconnect.view.Appbar
-import com.udc.chatconnect.view.SingleMessage
-import com.udc.chatconnect.view.SingleMessageWithDate
-import com.udc.chatconnect.view.TextFieldMessage
+import com.udc.chatconnect.model.Constants
+import com.udc.chatconnect.view.widget.Appbar
+import com.udc.chatconnect.view.widget.SingleMessageWithDate
+import com.udc.chatconnect.view.widget.TextFieldMessage
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,20 +23,23 @@ import java.util.*
 @Composable
 fun HomeView(
     homeViewModel: HomeViewModel = viewModel(),
-    landing: () -> Unit
+    landing: () -> Unit,
+    appInfo: () -> Unit
 ) {
     val message: String by homeViewModel.message.observeAsState(initial = "")
     val messages: List<Map<String, Any>> by homeViewModel.messages.observeAsState(
         initial = emptyList<Map<String, Any>>().toMutableList()
     )
     val context = LocalContext.current
-    var tmpDate =SimpleDateFormat("MM/dd/yyyy").parse("10/10/2023")
+    var tmpDate = SimpleDateFormat("MM/dd/yyyy").parse("10/10/2023")
 
     Scaffold(
         topBar = {
             Appbar(
                 title = "ChatConnect",
-                action = { homeViewModel.logoutUser(landing = landing, context = context) })
+                logout = { homeViewModel.logoutUser(landing = landing, context = context) },
+                about = appInfo
+            )
         },
         bottomBar = {
             TextFieldMessage(
