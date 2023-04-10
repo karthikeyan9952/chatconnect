@@ -35,18 +35,18 @@ fun Appbar(title: String, logout: () -> Unit, about: () -> Unit) {
                 expanded = showMenu,
                 onDismissRequest = { showMenu = false }
             ) {
-                DropdownMenuItem(onClick = logout) {
-                    Row {
-                        Text("Logout", fontFamily = manrope, fontSize = 16.sp)
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Icon(Icons.Outlined.Logout, contentDescription = "Logout", tint = Primary)
-                    }
-                }
                 DropdownMenuItem(onClick = about) {
                     Row {
                         Text("About", fontFamily = manrope, fontSize = 16.sp)
                         Spacer(modifier = Modifier.width(8.dp))
                         Icon(Icons.Outlined.Info, contentDescription = "Logout", tint = Primary)
+                    }
+                }
+                DropdownMenuItem(onClick = logout) {
+                    Row {
+                        Text("Logout", fontFamily = manrope, fontSize = 16.sp)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Icon(Icons.Outlined.Logout, contentDescription = "Logout", tint = Primary)
                     }
                 }
             }
