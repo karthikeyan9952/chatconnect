@@ -4,9 +4,8 @@ A Real-Time Chat And Communication App
 
 **TEAM ID NM2023TMID11706**
 
-- Team Leader KARTHIKEYAN G
-
 ## TEAM MEMBERS
+- KARTHIKEYAN G - Team Leader
 - MONIKA K
 - VIGNESH K
 - SHANMUGANATHAN P
@@ -14,4 +13,4 @@ A Real-Time Chat And Communication App
 
 **DEMO VIDEO**
 
-https://drive.google.com/file/d/16KP3Cn-4_1VsnKmlmegA9Ada1DQnGngx/view
+https://drive.google.com/file/d/16KP3Cn-4_1VsnKmlmegA9Ada1DQnGngx/view?usp=share_link
