@@ -16,3 +16,7 @@ A Real-Time Chat And Communication App
 **DEMO VIDEO**
 
 https://drive.google.com/file/d/16KP3Cn-4_1VsnKmlmegA9Ada1DQnGngx/view?usp=share_link
+
+**ScreenShots**
+
+<img alt="Authentication option screen" width="300px" src="https://github.com/karthikeyan9952/chatconnect/blob/master/screenshots/OnboardingScreen.jpg" />
