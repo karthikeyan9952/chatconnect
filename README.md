@@ -15,4 +15,4 @@ A Real-Time Chat And Communication App
 
 **DEMO VIDEO**
 
-<video src="https://drive.google.com/file/d/16KP3Cn-4_1VsnKmlmegA9Ada1DQnGngx/view?usp=share_link"></video>
+<video src="https://drive.google.com/file/d/16KP3Cn-4_1VsnKmlmegA9Ada1DQnGngx/view"></video>
