@@ -19,10 +19,10 @@ https://drive.google.com/file/d/16KP3Cn-4_1VsnKmlmegA9Ada1DQnGngx/view?usp=share
 
 
 
-## TEAM MEMBERS
+## ScreenShots
 
 <img alt="Authentication option screen" width="300px" src="https://github.com/karthikeyan9952/chatconnect/blob/master/screenshots/OnboardingScreen.jpg" />
-<img alt="Signup screen" width="300px" src="https://github.com/karthikeyan9952/chatconnect/blob/master/screenshots/SignupScreen.jpg" />
-<img alt="Login screen" width="300px" src="https://github.com/karthikeyan9952/chatconnect/blob/master/screenshots/LoginScreen.jpg" />
-<img alt="Chat screen" width="300px" src="https://github.com/karthikeyan9952/chatconnect/blob/master/screenshots/ChatScreen.jpg" />
-<img alt="AppInfo screen" width="300px" src="https://github.com/karthikeyan9952/chatconnect/blob/master/screenshots/AppInfoScreen.jpg" />
+<img alt="Signup screen" width="100px" src="https://github.com/karthikeyan9952/chatconnect/blob/master/screenshots/SignupScreen.jpg" />
+<img alt="Login screen" width="100px" src="https://github.com/karthikeyan9952/chatconnect/blob/master/screenshots/LoginScreen.jpg" />
+<img alt="Chat screen" width="100px" src="https://github.com/karthikeyan9952/chatconnect/blob/master/screenshots/ChatScreen.jpg" />
+<img alt="AppInfo screen" width="100px" src="https://github.com/karthikeyan9952/chatconnect/blob/master/screenshots/AppInfoScreen.jpg" />
